@@ -324,7 +324,7 @@ func (proxy *ProxyHttpServer) NewConnectDialToProxyWithHandler(https_proxy strin
 	}
 	if u.Scheme == "" || u.Scheme == "http" {
 		if strings.IndexRune(u.Host, ':') == -1 {
-			u.Host += ":80"
+			u.Host += ":1080"
 		}
 		return func(network, addr string) (net.Conn, error) {
 			connectReq := &http.Request{
@@ -419,7 +419,7 @@ func (proxy *ProxyHttpServer) NewConnectDialToCustomProxyWithHandler(getProxy fu
 
 		if proxyURL.Scheme == "" || proxyURL.Scheme == "http" {
 			if strings.IndexRune(proxyURL.Host, ':') == -1 {
-				proxyURL.Host += ":80"
+				proxyURL.Host += ":1080"
 			}
 
 			connectReq := &http.Request{
