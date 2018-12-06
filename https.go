@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"crypto/tls"
 	"errors"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net"
@@ -431,6 +432,7 @@ func (proxy *ProxyHttpServer) NewConnectDialToCustomProxyWithHandler(getProxy fu
 			if connectReqHandler != nil {
 				connectReqHandler(connectReq)
 			}
+			fmt.Println("http proxy.dial", network, proxyURL.Host)
 			c, err := proxy.dial(network, proxyURL.Host)
 			if err != nil {
 				return nil, err
@@ -462,6 +464,7 @@ func (proxy *ProxyHttpServer) NewConnectDialToCustomProxyWithHandler(getProxy fu
 				proxyURL.Host += ":443"
 			}
 
+			fmt.Println("https proxy.dial", network, proxyURL.Host)
 			c, err := proxy.dial(network, proxyURL.Host)
 			if err != nil {
 				return nil, err
